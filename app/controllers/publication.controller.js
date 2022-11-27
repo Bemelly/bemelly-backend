@@ -64,7 +64,7 @@ const newReview = async (req, res) => {
     { id: review.id },
     { reviews: publication.reviews }
   );
-  res.send(publication);
+  res.send("Se ha creado el comentario correctamente");
 };
 
 const counterFn = async (counterName) => {

@@ -67,8 +67,9 @@ En este repositorio se encuentra la parte del backend de la app
 | `/api/publication/getPublications`         |   `GET`   | Muestra todas las publicaciones         |
 | `/api/publication/getUserPublications/:CC` |   `GET`   | Muestra las publicaciones de un usuario |
 | `/api/publication/newPublication`          |  `POST`   | Crear una publicacion                   |
-| `/api/users/deletePublication`             | `DELETE`  | Eliminar una publicacion                |
-| `/api/users/modifyPublication`             |   `PUT`   | Modificar una publicacion               |
+| `/api/publication/deletePublication`       | `DELETE`  | Eliminar una publicacion                |
+| `/api/publication/modifyPublication`       |   `PUT`   | Modificar una publicacion               |
+| `/api/publication/newReview`               |  `POST`   | Modificar una publicacion               |
 
 `getPublications` No es necesario nada mas que la ruta y el verbo
 
@@ -104,5 +105,18 @@ En este repositorio se encuentra la parte del backend de la app
   "description":"description of our modified service",  //opcional
   "price":456,   //opcional
   "tags": ["tag1", "tag2"] // opcional
+}
+```
+
+`newReview` Se necesita el id de la publicacion y un objeto con estos tres valores:
+
+```JSON
+{
+  "id":41,
+  "review":{
+    "name":"Alice",
+    "score": 81,
+    "comment":"me encanto este lugar"
+  }
 }
 ```
