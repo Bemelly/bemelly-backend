@@ -13,7 +13,7 @@ const getUserPublications = async (req, res) => {
 const newPublication = async (req, res) => {
   try {
     let publication = req.body;
-    publication.id = await publicationCounter();
+    publication.id = await counterFn("publicationCounter");
     await Publication.create(publication);
     res.status(200).send("Publicacion creada correctamente");
   } catch (err) {
@@ -55,13 +55,22 @@ const modifyPublication = async (req, res) => {
   res.send("la publicacion ha sido modificada");
 };
 
-const publicationCounter = async () => {
-  let contador = await Counter.findOne({ id: "publicationCounter" });
-  newValue = contador.seq_value + 1;
-  await Counter.findOneAndUpdate(
-    { id: "publicationCounter" },
-    { seq_value: newValue }
+const newReview = async (req, res) => {
+  const review = req.body;
+  review.review.idReview = await counterFn("reviewCounter");
+  const publication = await Publication.findOne({ id: review.id });
+  publication.reviews.push(review.review);
+  await Publication.findOneAndUpdate(
+    { id: review.id },
+    { reviews: publication.reviews }
   );
+  res.send(publication);
+};
+
+const counterFn = async (counterName) => {
+  let contador = await Counter.findOne({ id: counterName });
+  newValue = contador.seq_value + 1;
+  await Counter.findOneAndUpdate({ id: counterName }, { seq_value: newValue });
   return contador.seq_value;
 };
 module.exports = {
@@ -70,4 +79,5 @@ module.exports = {
   modifyPublication,
   getPublications,
   getUserPublications,
+  newReview,
 };
