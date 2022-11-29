@@ -69,7 +69,9 @@ En este repositorio se encuentra la parte del backend de la app
 | `/api/publication/newPublication`          |  `POST`   | Crear una publicacion                   |
 | `/api/publication/deletePublication`       | `DELETE`  | Eliminar una publicacion                |
 | `/api/publication/modifyPublication`       |   `PUT`   | Modificar una publicacion               |
-| `/api/publication/newReview`               |  `POST`   | Modificar una publicacion               |
+| `/api/publication/newReview`               |  `POST`   | Crea un comentario                      |
+| `/api/publication/deleteReview`            | `DELETE`  | Elimina un comentario                   |
+| `/api/publication/modifyReview`            |   `PUT`   | Modifica un comentario                  |
 
 `getPublications` No es necesario nada mas que la ruta y el verbo
 
@@ -117,6 +119,28 @@ En este repositorio se encuentra la parte del backend de la app
     "name":"Alice",
     "score": 81,
     "comment":"me encanto este lugar"
+  }
+}
+```
+
+`deleteReview` Se necesita el id de la publicacion y el id del comentario:
+
+```JSON
+{
+  "idPublication":36,
+  "idReview": 12
+}
+```
+
+`modifyReview` Se necesitan los siguientes datos:
+
+```JSON
+{
+  "idPublication":36,
+  "idReview": 14,
+  "modified":{
+    "score":65,   //opcional
+    "comment": "Este es un comentario modificado"   //opcional
   }
 }
 ```

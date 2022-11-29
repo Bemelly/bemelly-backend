@@ -67,6 +67,50 @@ const newReview = async (req, res) => {
   res.send("Se ha creado el comentario correctamente");
 };
 
+const deleteReview = async (req, res) => {
+  const idComentario = req.body.idReview;
+  const idPublication = req.body.idPublication;
+  const publication = await Publication.findOne({ id: idPublication });
+  const comentarios = publication.reviews;
+  for (let i = 0; i < comentarios.length; i++) {
+    if (comentarios[i].idReview === idComentario) {
+      comentarios.splice(i, 1);
+      await Publication.findOneAndUpdate(
+        { id: idPublication },
+        { reviews: comentarios }
+      );
+      res.send(publication);
+    }
+  }
+};
+
+const modifyReview = async (req, res) => {
+  try {
+    const idComentario = req.body.idReview;
+    const nuevoComentario = req.body.modified;
+    const idPublication = req.body.idPublication;
+    const publication = await Publication.findOne({ id: idPublication });
+    const comentarios = publication.reviews;
+    for (let i = 0; i < comentarios.length; i++) {
+      if (comentarios[i].idReview === idComentario) {
+        if (nuevoComentario.score) {
+          comentarios[i].score = nuevoComentario.score;
+        }
+        if (nuevoComentario.comment) {
+          comentarios[i].comment = nuevoComentario.comment;
+        }
+        await Publication.findOneAndUpdate(
+          { id: idPublication },
+          { reviews: comentarios }
+        );
+        return res.send("comentario modificado correctamente");
+      }
+    }
+    return res.send("hubo un error");
+  } catch (err) {
+    return res.send("hubo un error");
+  }
+};
 const counterFn = async (counterName) => {
   let contador = await Counter.findOne({ id: counterName });
   newValue = contador.seq_value + 1;
@@ -80,4 +124,6 @@ module.exports = {
   getPublications,
   getUserPublications,
   newReview,
+  deleteReview,
+  modifyReview,
 };
