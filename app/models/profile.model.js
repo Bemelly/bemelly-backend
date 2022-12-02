@@ -1,10 +1,11 @@
 const { Schema, model } = require("mongoose");
-const { schema } = require("./counter.model");
 
 const profileShema = new Schema({
   idUser: {
-    type: schema.CC,
+    type: Schema.ObjectId,
     ref: "User",
+    required: true,
+    unique: true,
   },
   phone: {
     type: String,

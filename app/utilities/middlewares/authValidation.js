@@ -2,15 +2,15 @@ const jwt = require("jsonwebtoken");
 const { SECRET_KEY } = process.env;
 
 const tokenValidation = (req, res, next) => {
-  const token = req.body.token;
+  const token = req.body.token || req.header("token");
 
   if (!token) {
     return res.status(403).send("se necesita un token para la autenticacion!");
   }
 
   try {
-    jwt.verify(token, SECRET_KEY);
-    // req.user = decoded;
+    const decoded = jwt.verify(token, SECRET_KEY);
+    req.user = decoded;
   } catch (err) {
     return res.status(401).send("token invalido");
   }

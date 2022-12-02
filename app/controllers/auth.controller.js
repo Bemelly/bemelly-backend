@@ -19,6 +19,7 @@ const login = async (req, res) => {
     if (isCorrectPassword && dbUser.isActive) {
       const token = jwt.sign(
         {
+          id: dbUser._id,
           CC: dbUser.CC,
           name: dbUser.name,
           email: dbUser.email,

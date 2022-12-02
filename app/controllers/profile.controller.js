@@ -1,12 +1,36 @@
 const uploadFromBuffer = require("../utilities/files/uploadFiles");
+const Profile = require("../models/profile.model");
 
 const updatePhotoProfile = async (req, res) => {
-  console.log("api updatePhotoProfile works");
   console.log(req.file);
-  const result = await uploadFromBuffer(req.file);
+  const resultUploadPhoto = await uploadFromBuffer(req.file);
+  try {
+    if (!resultUploadPhoto) {
+      return res.status(400).json({
+        ok: false,
+        message: "No se pudo obtener la url de la foto",
+      });
+    }
 
-  if (result) {
-    console.log(result);
+    const photoUpdated = await Profile.findOneAndUpdate(
+      { idUser: req.user.id },
+      { photoProfile: resultUploadPhoto.url }
+    );
+    if (!photoUpdated) {
+      await Profile.create({
+        idUser: req.user.id,
+        photoProfile: resultUploadPhoto.url,
+      });
+    }
+
+    res.status(200).json({
+      ok: true,
+    });
+  } catch (error) {
+    res.status(400).json({
+      ok: false,
+      message: error,
+    });
   }
 };
 
