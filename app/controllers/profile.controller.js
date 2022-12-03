@@ -39,17 +39,17 @@ const getProfile = async (req, res) => {
     const profile = await Profile.findOne({ idUser: req.user.id });
 
     if (!profile) {
-      res.status(404).json({
+      return res.status(404).json({
         ok: false,
         message: "Perfil no encontrado",
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       ok: true,
       data: profile,
     });
   } catch (error) {
-    res.status(400).json({
+    return res.status(400).json({
       ok: false,
       message: error,
     });
