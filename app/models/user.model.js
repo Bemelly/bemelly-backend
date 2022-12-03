@@ -29,6 +29,9 @@ const userShema = new Schema(
       type: Boolean,
       default: true,
     },
+    photoProfile: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

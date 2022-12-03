@@ -1,5 +1,6 @@
 const uploadFromBuffer = require("../utilities/files/uploadFiles");
 const Profile = require("../models/profile.model");
+const User = require("../models/user.model");
 const updatePhotoProfile = async (req, res) => {
   console.log(req.file);
   const resultUploadPhoto = await uploadFromBuffer(req.file);
@@ -10,7 +11,10 @@ const updatePhotoProfile = async (req, res) => {
         message: "No se pudo obtener la url de la foto",
       });
     }
-
+    await User.findByIdAndUpdate(
+      { _id: req.user.id },
+      { photoProfile: resultUploadPhoto.url }
+    );
     const photoUpdated = await Profile.findOneAndUpdate(
       { idUser: req.user.id },
       { photoProfile: resultUploadPhoto.url }
