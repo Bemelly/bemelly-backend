@@ -1,6 +1,5 @@
 const uploadFromBuffer = require("../utilities/files/uploadFiles");
 const Profile = require("../models/profile.model");
-
 const updatePhotoProfile = async (req, res) => {
   console.log(req.file);
   const resultUploadPhoto = await uploadFromBuffer(req.file);
@@ -56,7 +55,14 @@ const getProfile = async (req, res) => {
   }
 };
 
+const getUsersPhoto = async (req, res) => {
+  const user = req.body.idUser;
+  const profile = await Profile.findOne({ idUser: user });
+  return profile.photoProfile;
+};
+
 module.exports = {
   updatePhotoProfile,
   getProfile,
+  getUsersPhoto,
 };

@@ -2,6 +2,7 @@ const express = require("express");
 const {
   updatePhotoProfile,
   getProfile,
+  getUsersPhoto,
 } = require("../controllers/profile.controller");
 const router = express.Router();
 const multer = require("multer");
@@ -16,4 +17,5 @@ router.post(
   updatePhotoProfile
 );
 router.get("/getProfile", tokenValidation, getProfile);
+router.get("/getUsersPhoto", getUsersPhoto);
 module.exports = router;
