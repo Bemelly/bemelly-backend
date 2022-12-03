@@ -56,9 +56,9 @@ const getProfile = async (req, res) => {
 };
 
 const getUsersPhoto = async (req, res) => {
-  const user = req.body.idUser;
+  const user = req.params.idUser;
   const profile = await Profile.findOne({ idUser: user });
-  return profile.photoProfile;
+  return res.send(profile.photoProfile);
 };
 
 module.exports = {

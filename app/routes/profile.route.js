@@ -17,5 +17,5 @@ router.post(
   updatePhotoProfile
 );
 router.get("/getProfile", tokenValidation, getProfile);
-router.get("/getUsersPhoto", getUsersPhoto);
+router.get("/getUsersPhoto/:idUser", getUsersPhoto);
 module.exports = router;
