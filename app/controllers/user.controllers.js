@@ -8,6 +8,13 @@ class UserService {
     res.send(result);
   }
 
+  async getProfesionalUsers(req, res) {
+    const result = await User.find({
+      $or: [{ role: "professional" }, { role: "admin" }],
+    });
+    res.send(result);
+  }
+
   async newUser(req, res) {
     try {
       const user = req.body;
