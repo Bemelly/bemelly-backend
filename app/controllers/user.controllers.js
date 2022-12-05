@@ -24,7 +24,10 @@ class UserService {
         user.password = passwordHash;
       }
       await User.create(user);
-      res.status(200).send("Se ha creado el usuario correctamente");
+      res.status(200).json({
+        message: "Se ha creado el usuario correctamente",
+        ok: true,
+      });
     } catch (err) {
       res.status(400).send(err);
     }
