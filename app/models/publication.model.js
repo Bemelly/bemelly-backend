@@ -26,7 +26,6 @@ const publicationSchema = new Schema(
 
     price: {
       type: Number,
-      required: true,
     },
 
     isActive: {

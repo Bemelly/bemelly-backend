@@ -31,6 +31,7 @@ En este repositorio se encuentra la parte del backend de la app
 
 ```JSON
 {
+    "CC": 123456,
     "name": "Juan",
     "email": "example@email.com",
     "role": "client"
