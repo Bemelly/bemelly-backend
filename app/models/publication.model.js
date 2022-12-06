@@ -10,6 +10,7 @@ const publicationSchema = new Schema(
     ownerCC: {
       type: Number,
       required: true,
+      unique: true,
     },
     serviceName: {
       type: String,
