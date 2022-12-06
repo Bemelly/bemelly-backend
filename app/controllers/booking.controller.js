@@ -20,9 +20,8 @@ class BookingService {
     res.status(200).send("Reserva creada correctamente");
   }
   async deleteBooking(req, res) {
-    const client = req.body.client;
     const booking = req.body.booking;
-    await Booking.findOneAndDelete({ idClient: client, id: booking });
+    await Booking.findOneAndDelete({ id: booking });
     res.send("La reserva ha sido cancelada");
   }
 }

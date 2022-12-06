@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const bookingSchema = new Schema(
   {
     id: {
-      type: String,
+      type: Number,
       unique: true,
       required: true,
     },

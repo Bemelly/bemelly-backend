@@ -76,7 +76,7 @@ En este repositorio se encuentra la parte del backend de la app
 
 `getPublications` No es necesario nada mas que la ruta y el verbo
 
-`getUserPublications/:CC` se debe enviar un la url con el CC del dueño de las publicaciones que se quieren mostrar
+`getUserPublications/:CC` se debe enviar en la url con el CC del dueño de las publicaciones que se quieren mostrar
 
 `newPublication` Se necesita enviar en este formato :
 
@@ -146,4 +146,25 @@ En este repositorio se encuentra la parte del backend de la app
 }
 ```
 
-...
+### API BOOKING
+
+| Route                              | HTTP Verb | Description                        |
+| :--------------------------------- | :-------: | :--------------------------------- |
+| `/api/booking/getBookings`         |   `GET`   | Muestra todas las reservas         |
+| `/api/booking/getUserBookings/:CC` |   `GET`   | Muestra las reservas de un usuario |
+| `/api/booking/newBooking`          |  `POST`   | Crear una reserva                  |
+
+`getBookings` No es necesario nada mas que la ruta y el verbo
+
+`getUserBookings/:user` Se debe enviar un la url con el usuario del que se le quieren mostrar las reservas
+
+`newBooking` Para crear una reserva se deben enviar los siguientes datos:
+
+```JSON
+{
+  "place": "casa",
+  "date":2022,
+  "idPublication": 49,
+  "idClient": 123456
+}
+```
