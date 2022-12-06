@@ -7,9 +7,15 @@ class PublicationService {
     res.status(200).send(result);
   }
   async getUserPublications(req, res) {
-    const user = req.params.CC;
-    const result = await Publication.find({ ownerCC: user });
-    res.status(200).send(result);
+    try {
+      const user = req.params.CC;
+      const result = await Publication.find({ ownerCC: user });
+      res.status(200).send(result);
+    } catch (err) {
+      res.status(404).json({
+        error: err,
+      });
+    }
   }
   async newPublication(req, res) {
     try {
