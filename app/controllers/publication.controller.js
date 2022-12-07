@@ -9,7 +9,7 @@ class PublicationService {
   async getUserPublications(req, res) {
     try {
       const user = req.params.CC;
-      const result = await Publication.find({ ownerCC: user });
+      const result = await Publication.findOne({ ownerCC: user });
       res.status(200).send(result);
     } catch (err) {
       res.status(404).json({
