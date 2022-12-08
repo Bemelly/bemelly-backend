@@ -24,6 +24,10 @@ const updatePhotoProfile = async (req, res) => {
         idUser: req.user.id,
         photoProfile: resultUploadPhoto.url,
       });
+      await User.findByIdAndUpdate(
+        { _id: req.user.id },
+        { photoProfile: resultUploadPhoto.url }
+      );
     }
 
     res.status(200).json({
