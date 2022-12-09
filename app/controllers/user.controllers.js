@@ -14,6 +14,11 @@ class UserService {
     });
     res.send(result);
   }
+  async getUserById(req, res) {
+    const idUser = req.body.CC;
+    const result = await User.findOne({ CC: idUser });
+    res.send(result);
+  }
 
   async newUser(req, res) {
     try {

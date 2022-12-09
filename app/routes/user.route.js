@@ -4,6 +4,7 @@ const router = express.Router();
 const userService = new UserService();
 
 router.get("/getUsers", userService.getUsers);
+router.post("/getUserById", userService.getUserById);
 router.get("/getProfesionalUsers", userService.getProfesionalUsers);
 router.post("/newUser", userService.newUser);
 router.put("/modifyUser", userService.modifyUser);
