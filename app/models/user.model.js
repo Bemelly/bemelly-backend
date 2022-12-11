@@ -32,6 +32,12 @@ const userShema = new Schema(
     photoProfile: {
       type: String,
     },
+    stars: {
+      type: String,
+    },
+    servicesCompleted: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

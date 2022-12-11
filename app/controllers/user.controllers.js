@@ -43,6 +43,15 @@ class UserService {
     await User.findOneAndUpdate({ CC: user.CC }, { name: user.name });
     await User.findOneAndUpdate({ CC: user.CC }, { email: user.email });
     await User.findOneAndUpdate({ CC: user.CC }, { role: user.role });
+    await User.findOneAndUpdate({ CC: user.CC }, { stars: user.stars });
+    await User.findOneAndUpdate(
+      { CC: user.CC },
+      { photoProfile: user.photoProfile }
+    );
+    await User.findOneAndUpdate(
+      { CC: user.CC },
+      { servicesCompleted: user.servicesCompleted }
+    );
     res.send("el usuario ha sido modificado");
   }
 
