@@ -15,7 +15,7 @@ class UserService {
     res.send(result);
   }
   async getUserById(req, res) {
-    const idUser = req.body.CC;
+    const idUser = req.params.user;
     const result = await User.findOne({ CC: idUser });
     res.send(result);
   }
